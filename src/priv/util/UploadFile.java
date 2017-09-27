@@ -12,6 +12,7 @@ import priv.util.MysqlConnect;
 public class UploadFile {
 	public void UploadFile(String userName, String newfileName,String fileName) {
 		// TODO Auto-generated method stub
+		//上传
 		Connection conn = MysqlConnect.getConnection();	
 		String addSQL = "insert into tb_file (userName,path,realname) values(?,?,?)";
 		PreparedStatement pstmt = null;					
