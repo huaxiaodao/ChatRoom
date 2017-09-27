@@ -20,21 +20,21 @@ public class UserBehavior {
     String strPass;
     String strContent;
     HttpSession session; 
-	//µÇÂ¼´¦Àí
+	//è¡Œä¸º
 		public boolean UserLogin(String strName,String strPass,HttpSession session){
 			 UserDaoImpl userDao = new UserDaoImpl();
 		     User user = userDao.findUserById(strName);
 			 boolean blnR = false;
 			 if (strName.equals(user.getuserName()))
-		        if (strPass.equals(user.getpassword()))//ÑéÖ¤ÃÜÂë
+		        if (strPass.equals(user.getpassword()))//ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 		        {
-		            if (OnLineUserList.size() == 0)//ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¿Õ
+		            if (OnLineUserList.size() == 0)//ï¿½Ğ¶ï¿½ï¿½Ã»ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½
 		            {
-		            	OnLineUserList = new ArrayList<String>();//Îª¿ÕÔòÎªÓÃ»§arrayListÖØĞÂ³õÊ¼»¯
+		            	OnLineUserList = new ArrayList<String>();//Îªï¿½ï¿½ï¿½ï¿½Îªï¿½Ã»ï¿½arrayListï¿½ï¿½ï¿½Â³ï¿½Ê¼ï¿½ï¿½
 		            }
-		            OnLineUserList.add(strName);//±£´æÓÃ»§µ½ÓÃ»§arrayList·½±ãÔÚÁÄÌìÓÃ»§ÄÚÈİÁĞÏÔÊ¾
+		            OnLineUserList.add(strName);//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ã»ï¿½arrayListï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 		            session.setAttribute("LOGINUSER",
-		            		strName);//±£´æµÇÂ¼ĞÅÏ¢µ½session
+		            		strName);//ç™»å½•
 		            blnR = true;
 		        }
 		        return blnR;
@@ -45,12 +45,12 @@ public class UserBehavior {
 		    userDao.addUser(strName, strPass);
 			return true;
 		};
-		//»ñÈ¡ÁÄÌìÄÚÈİ
+		//èŠå¤©åˆ—è¡¨
 		public String AllChatList(){
 			String result="";
 	        if (strSendConentList.size() == 0)
 	        {
-	           result = "ÈÕÇ°»¹Ã»ÓĞÕÒµ½ÁÄÌì¼ÇÂ¼";
+	           result = "æ—¥å‰è¿˜æ²¡æœ‰æ‰¾åˆ°èŠå¤©è®°å½•";
 	        }
 	        else
 	        {
@@ -63,12 +63,12 @@ public class UserBehavior {
 	       result=result.replace(":>", ".gif '/>");
 	       return result;
 		}
-		//»ñÈ¡ÓÃ»§ÁĞ±í
+		//è·å–åœ¨çº¿äººæ•°
 		public String GetOnlineUserList(HttpSession session){
 	        String result="";
 		        if (OnLineUserList.size()==0)
 		        {
-		        		result="ÔİÊ±Ã»ÓĞÈËÔÚÏß";
+		        		result="æš‚æ—¶æ²¡æœ‰äººåœ¨çº¿";
 		        }else{
 		        Iterator<String> it=OnLineUserList.iterator();
 	        	while(it.hasNext()){
@@ -77,7 +77,7 @@ public class UserBehavior {
 		        }
 		        return result;
 		}
-		//·¢ËÍĞÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		public Boolean AddSendContent(String strContent,HttpSession session){
 			    String userName=(String) session.getAttribute("LOGINUSER");
 			    //String name = session.getAttribute("LOGINUSER").toString();
@@ -89,7 +89,7 @@ public class UserBehavior {
 			    int userID = user.getuserID();
 			    MessageDaoImpl MessageDao =new MessageDaoImpl();
 			    MessageDao.addMessage(userID, userName, strContent);
-		        String strSendConent = userName + " ÓÚ " + new java.util.Date(System.currentTimeMillis()) + " Ëµ: " + strContent;
+		        String strSendConent = userName + " äº" + new java.util.Date(System.currentTimeMillis()) + " Ëµ: " + strContent;
 		        if (strSendConentList.size() == 0)
 		        {
 		        	strSendConentList = new ArrayList<String>();
@@ -97,7 +97,7 @@ public class UserBehavior {
 		        strSendConentList.add(strSendConent);
 		        return true;
 		}
-		//µÇ³ö
+		//ï¿½Ç³ï¿½
 		public boolean Logout(HttpSession session){
 			if(null==session.getAttribute("LOGINUSER")){
 				return false;

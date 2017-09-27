@@ -28,7 +28,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
 import priv.Servlet.UserBehavior;
-
+import priv.util.UploadFile;
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -98,36 +98,8 @@ public class UploadServlet extends HttpServlet {
 							//获取当前用户
 							String user = session.getAttribute("LOGINUSER")
 									.toString();
-							Connection cnn = null;
-							PreparedStatement pst = null;
-							try {
-								//记录用户上传文件的信息到数据库
-								Class.forName("com.mysql.jdbc.Driver");
-								cnn = DriverManager
-										.getConnection("jdbc:mysql://localhost:3306/file?user=root&password=adc12345");
-								String sql="insert into file(user,path,realname) values('"+user+"','"+newfileName+"','"+fileName+"')";
-								
-								pst = cnn.prepareStatement(sql);
-								pst.executeUpdate();
-							} catch (SQLException e) {
-								e.printStackTrace();
-							} catch (ClassNotFoundException e) {
-								e.printStackTrace();
-							} finally {
-								try {
-									if (pst != null) {
-										pst.close();
-										pst = null;
-									}
-									if (cnn != null) {
-										cnn.close();
-										cnn = null;
-									}
-								} catch (SQLException e) {
-									e.printStackTrace();
-								}
-							}
-							//截取文件的后缀
+							UploadFile uploadFile = new UploadFile();
+							uploadFile.UploadFile(user, newfileName, fileName);
 							String FileExt = fileName
 									.substring(fileName.lastIndexOf("."));
 							//用户发送文件的信息
