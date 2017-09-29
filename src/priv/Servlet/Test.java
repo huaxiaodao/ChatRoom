@@ -22,7 +22,7 @@ public class Test {
 		String path = "/home/wasadmin/log";
 		String fileName = "test.log";
 		UploadFile file = new UploadFile();
-		file.UploadFile(userName, path, fileName);
+		//file.UploadFile(userName, path, fileName);
 		log.info("用户名: "+ userName +" 路径: "+ path + " 文件名: " + fileName);
 		//MessageDaoImpl MessageDao =new MessageDaoImpl();
 	    //MessageDao.addMessage(userID, userName, strContent);

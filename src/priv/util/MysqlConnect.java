@@ -7,44 +7,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MysqlConnect {
-	private static final String DBDRIVER = "com.mysql.jdbc.Driver" ;			//Çý¶¯ÀàÀàÃû
-    private static final String DBURL = "jdbc:mysql://localhost:3306/db_servlet";//Á¬½ÓURL
-    private static final String DBUSER = "root" ;								//Êý¾Ý¿âÓÃ»§Ãû
-    private static final String DBPASSWORD = "adc12345";							//Êý¾Ý¿âÃÜÂë
+	private static final String DBDRIVER = "com.mysql.jdbc.Driver" ;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private static final String DBURL = "jdbc:mysql://localhost:3306/db_servlet";//ï¿½ï¿½ï¿½ï¿½URL
+    private static final String DBUSER = "www" ;								//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+    private static final String DBPASSWORD = "www";							//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static Connection getConnection(){
-		Connection conn = null;													//ÉùÃ÷Ò»¸öÁ¬½Ó¶ÔÏó
+		Connection conn = null;													//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
 		try {
-			Class.forName(DBDRIVER);											//×¢²áÇý¶¯
-			conn = DriverManager.getConnection(DBURL,DBUSER,DBPASSWORD);		//»ñµÃÁ¬½Ó¶ÔÏó
-		} catch (ClassNotFoundException e) {									//²¶»ñÇý¶¯ÀàÎÞ·¨ÕÒµ½Òì³£
+			Class.forName(DBDRIVER);											//×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			conn = DriverManager.getConnection(DBURL,DBUSER,DBPASSWORD);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
+		} catch (ClassNotFoundException e) {									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½Òµï¿½ï¿½ì³£
 			e.printStackTrace();										
-		} catch (SQLException e) {												//²¶»ñSQLÒì³£
+		} catch (SQLException e) {												//ï¿½ï¿½ï¿½ï¿½SQLï¿½ì³£
 			e.printStackTrace();
 		}
 		return conn;
 	}
-	public static void close(Connection conn) {//¹Ø±ÕÁ¬½Ó¶ÔÏó
-		if(conn != null) {				//Èç¹ûconnÁ¬½Ó¶ÔÏó²»Îª¿Õ
+	public static void close(Connection conn) {//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
+		if(conn != null) {				//ï¿½ï¿½ï¿½connï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½Îªï¿½ï¿½
 			try {
-				conn.close();			//¹Ø±ÕconnÁ¬½Ó¶ÔÏó¶ÔÏó
+				conn.close();			//ï¿½Ø±ï¿½connï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	public static void close(PreparedStatement pstmt) {//¹Ø±ÕÔ¤´¦Àí¶ÔÏó
-		if(pstmt != null) {				//Èç¹ûpstmtÔ¤´¦Àí¶ÔÏó²»Îª¿Õ
+	public static void close(PreparedStatement pstmt) {//ï¿½Ø±ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(pstmt != null) {				//ï¿½ï¿½ï¿½pstmtÔ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 			try {
-				pstmt.close();			//¹Ø±ÕpstmtÔ¤´¦Àí¶ÔÏó
+				pstmt.close();			//ï¿½Ø±ï¿½pstmtÔ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	public static void close(ResultSet rs) {//¹Ø±Õ½á¹û¼¯¶ÔÏó
-		if(rs != null) {				//Èç¹ûrs½á¹û¼¯¶ÔÏó²»Îªnull
+	public static void close(ResultSet rs) {//ï¿½Ø±Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(rs != null) {				//ï¿½ï¿½ï¿½rsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªnull
 			try {
-				rs.close();				//¹Ø±Õrs½á¹û¼¯¶ÔÏó
+				rs.close();				//ï¿½Ø±ï¿½rsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -29,6 +29,4 @@ public class UploadFile {
 			MysqlConnect.close(conn);							
 		}
 	}
-
-
 }
